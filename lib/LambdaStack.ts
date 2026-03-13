@@ -1,0 +1,17 @@
+import {Construct} from "constructs";
+import {Stack, StackProps} from "aws-cdk-lib";
+
+interface LambdaStackProps extends StackProps {
+    stageName?: string
+}
+
+
+export class LambdaStack extends Stack {
+    constructor(scope: Construct, id: string, props: LambdaStackProps) {
+        super(scope, id, props);
+
+        new LambdaStack(this, 'LambdaStack', {
+            stageName: props.stageName
+        })
+    }
+}
